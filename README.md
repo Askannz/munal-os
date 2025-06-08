@@ -33,7 +33,7 @@ UEFI leaves the address space as identity-mapped and Munal OS does not remap it.
 
 ### Drivers
 
-Munal OS does not rely on PS/2 inputs or VGA/UEFI GOP framebuffers for display. Instead, it implements a PCI driver which is used to communicate with QEMU via the [VirtIO 1.1 specification](https://docs.oasis-open.org/virtio/virtio/v1.1/csprd01/virtio-v1.1-csprd01.html). A generic virtqueue system serves as the basis for 4 different VirtIO drivers: keyboard, mouse, network and GPU. Notably, the drivers are entirely polling-based and do not rely on system interrupts at all (in fact Munal OS does not implement any).
+Munal OS does not rely on PS/2 inputs or VGA/UEFI GOP framebuffers for display. Instead, it implements a PCI driver which is used to communicate with QEMU via the [VirtIO 1.1 specification](https://docs.oasis-open.org/virtio/virtio/v1.1/csprd01/virtio-v1.1-csprd01.html). A generic virtqueue system serves as the basis for 4 different VirtIO drivers: keyboard, mouse, network and GPU. Notably, the drivers are entirely polling-based and do not rely on CPU interrupts at all (in fact Munal OS does not implement any).
 
 The reliance on VirtIO means Munal OS does not support running on real hardware yet; more work would be needed, either to use BIOS/UEFI-provided methods (such as PS/2, VGA, GOP) or to implement full-blown GPU and USB drivers.
 
