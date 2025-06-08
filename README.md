@@ -59,7 +59,7 @@ Munal OS has its own UI toolkit (plainly named Uitk) which is used throughout th
 
 Uitk is an immediate mode toolkit which supports some basic widgets: buttons, progress bars, text editing, scrollable canvas...a generic triangle rasterizer is also provided (which is used to draw the radial pie menu and the 3D cube demo),
 
-Styling is supported via a global stylesheet which can be shared between OS and apps, and overriden for individual UI element.
+Styling is supported via a global stylesheet which can be shared between OS and apps, and overriden for individual UI elements.
 
 A basic caching system is implemented to avoid unnecessary redraws: for example, generic scrollable canvases (like the web browser) are split into "tiles" associated to a unique contend ID. Tiles are only redrawn if the content ID changes, and pulled from a cache otherwise.
 
