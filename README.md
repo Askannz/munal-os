@@ -3,7 +3,6 @@
 An experimental operating system written in Rust, with cooperative scheduling and a security model based on WASM sandboxing.
 
 Features:
-
 * Fully graphical interface in HD resolution with mouse and keyboard support
 * Sandboxed applications
 * Network driver and TCP stack
@@ -62,8 +61,10 @@ Uitk is an immediate mode toolkit which supports some basic widgets: buttons, pr
 
 A basic caching system is implemented to avoid unnecessary redraws: for example, generic scrollable canvases (like the web browser) are split into "tiles" associated to a unique contend ID. Tiles are only redrawn if the content ID changes, and pulled from a cache otherwise.
 
-## Demo videos
-<TODO>
+## Screenshots & videos
+
+**TODO**
+
 [Screencast_20250215_121948.webm](https://github.com/user-attachments/assets/8cbf8a42-c012-4610-8668-014093efc09d)
 
 ## Credits & acknowledgements
@@ -73,6 +74,7 @@ A basic caching system is implemented to avoid unnecessary redraws: for example,
 * [The Wasmi WASM engine](https://github.com/wasmi-labs/wasmi), a great alternative to Wasmtime for embedded
 * [smoltcp](https://github.com/smoltcp-rs/smoltcp) for the TCP stack
 * [Rustls](https://github.com/rustls/rustls) for the TLS primitives
+* [RustPython](https://github.com/RustPython/RustPython) for the embeddable Python implementations
 
 Fonts used:
 * https://fonts.google.com/noto/specimen/Noto+Sans
@@ -81,4 +83,4 @@ Fonts used:
 * https://fontesk.com/major-mono-font/
 
 Icons used:
-<TODO>
+**TODO**
