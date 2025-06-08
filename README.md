@@ -8,7 +8,7 @@ Features:
 * Network driver and TCP stack
 * Customizable UI toolkit providing various widgets, responsive layouts and flexible text rendering
 * Embedded selection of applications including:
-  * A (very) basic web browser
+  * A web browser supporting DNS, HTTPS and very basic HTML
   * A text editor
   * A Python terminal
 
