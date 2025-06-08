@@ -73,7 +73,7 @@ A basic caching system is implemented to avoid unnecessary redraws: for example,
 
 * [Philipp Oppermann's great Rust OS tutorial](https://os.phil-opp.com/), which was the starting point of this whole project
 * [The OSDev Wiki](https://wiki.osdev.org/) for resources on x86_64 and PCI drivers
-* [The Wasmi WASM engine](https://github.com/wasmi-labs/wasmi), a great alternative to Wasmtime for embedded
+* [The Wasmi WASM engine](https://github.com/wasmi-labs/wasmi), a great, embeddable alternative to Wasmtime
 * [smoltcp](https://github.com/smoltcp-rs/smoltcp) for the TCP stack
 * [Rustls](https://github.com/rustls/rustls) for the TLS primitives
 * [RustPython](https://github.com/RustPython/RustPython) for the embeddable Python implementation
