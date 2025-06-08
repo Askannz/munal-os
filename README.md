@@ -61,7 +61,7 @@ Uitk is an immediate mode toolkit which supports some basic widgets: buttons, pr
 
 Styling is supported via a global stylesheet which can be shared between OS and apps, and overriden for individual UI elements.
 
-A basic caching system is implemented to avoid unnecessary redraws: for example, generic scrollable canvases (like the web browser) are split into "tiles" associated to a unique contend ID. Tiles are only redrawn if the content ID changes, and pulled from a cache otherwise.
+A basic caching system is implemented to avoid unnecessary redraws: for example, generic scrollable canvases (like the web browser) are split into "tiles" tracked with a unique content ID. Rust's mutability rules allow to keep track of changes to the content, and so tiles are only redrawn if the content ID changes, and pulled from a cache otherwise.
 
 ## Screenshots & videos
 
