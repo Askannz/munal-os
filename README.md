@@ -51,11 +51,11 @@ Munal OS embeds the [wasmi](https://github.com/wasmi-labs/wasmi) WASM engine for
 
 Because of its custom "system call" API, Munal OS does not aim for compatibility with the WASI standards. However, the [WASI Preview 1](https://github.com/WebAssembly/WASI/blob/main/legacy/README.md) standard is partially supported, mostly so that applications can be compiled without using `#![no_std]` (which is often a blocker for pulling in external dependencies). Only the bare minimum is implemented, and WASI functions that have no analog in Munal OS (e.g `path_rename()`) are simply stubbed.
 
-Munal OS relies on cooperative scheduling, meaning that applications are given control of the CPU every iteration of the global event loop, and must explicitly relinquish it. This is less an intentional design decision and more a consequence of using Wasmi as the WASM engine, which does not support interrupting and resuming functions mid-excution. However Wasmi does support fuel limiting, and so it would be possible to terminate misbehaving apps that hold the CPU for too long (though that's not implemented yet).
+Munal OS relies on cooperative scheduling, meaning that applications are given control of the CPU every iteration of the global event loop, and must explicitly relinquish it. This is less an intentional design decision and more a consequence of using Wasmi as the WASM engine, which does not support interrupting and resuming functions mid-excution. However Wasmi does support fuel limiting, and so in theory it would be possible to terminate misbehaving apps that hold the CPU for too long (though that's not implemented yet).
 
 ### UI Library
 
-Munal OS has its own UI toolkit (plainly named Uitk) which is used throughout the system. It is also used by WASM applications, thought that's just for convenience and consistency with the desktop styling; it is just a shared library and applications could in theory for any other library they wish, as long as it can render to a generic framebuffer.
+Munal OS has its own UI toolkit (plainly named Uitk) which is used throughout the system. It is also used by WASM applications, though that's just for convenience and consistency with the desktop styling; it is just a shared library and applications could in theory for any other library they wish, as long as it can render to a generic framebuffer.
 
 Uitk is an immediate mode toolkit which supports some basic widgets: buttons, progress bars, text editing, scrollable canvas...a generic triangle rasterizer is also provided (which is used to draw the radial pie menu and the 3D cube demo),
 
