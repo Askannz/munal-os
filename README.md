@@ -14,7 +14,7 @@ Features:
 
 ## Architecture
 
-Munal OS started as a toy project to practice systems programming, and over the years morphed into a full-blown OS and a playground to explore new ideas. It aims to re-examine principles of OS design, and see how much is really needed today to make a functional OS, and where shortcuts can be taken using modern tools. The design has no pretention to be superior to anything else, rather it is an experiment striving simplicity of the codebase (but not necessarily a lightweight binary or minimal dependencies).
+Munal OS started as a toy project to practice systems programming, and over the years morphed into a full-blown OS and a playground to explore new ideas. It aims to re-examine principles of OS design, and see how much is really needed today to make a functional OS, and where shortcuts can be taken using modern tools. The design has no pretention to be superior to anything else, rather it is an experiment striving for simplicity of the codebase (but not necessarily a lightweight binary or minimal dependencies).
 
 In particular, here are usual cornerstones of OS design that Munal OS does **NOT** implement:
 
