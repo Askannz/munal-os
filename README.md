@@ -15,7 +15,7 @@ Features:
 
 ## Architecture
 
-Munal OS started as a toy project to practice systems programming, and over the years morphed into a full-blown OS and a playground to explore new ideas. It aims to re-examine principles of OS design, and see how much is really needed today to make a functional OS, and where shortcuts can be taken using modern tools. The design has no pretention to be superior to anything else, rather it is an experiment focusing on the simplicity of the codebase (even if it relies on heavy dependencies like a WASM engine).
+Munal OS started as a toy project to practice systems programming, and over the years morphed into a full-blown OS and a playground to explore new ideas. It aims to re-examine principles of OS design, and see how much is really needed today to make a functional OS, and where shortcuts can be taken using modern tools. The design has no pretention to be superior to anything else, rather it is an experiment focusing on the simplicity of the codebase (even if it admittedly relies on heavy dependencies like a WASM engine).
 
 In particular, here are usual cornerstones of OS design that Munal OS does **NOT** implement:
 
@@ -44,21 +44,41 @@ For simplicity, Munal OS does not implement multi-core support or even interrupt
 
 One advantage of this approach is that it is trivial to inspect the performance of each OS component and user application, simply by measuring how much of the total frametime they eat. For now, the loop should run at well over 60 FPS on a modern CPU with all applications open.
 
-The downside of course is that each step of the loop is not allowed to hold the CPU for too long, and must explicitly yield for long-running tasks.
+The downside of course is that each step of the loop is not allowed to hold the CPU for arbitrary amounts of time, and must explicitly yield for long-running tasks.
 
 ### Applications
 
+Munal OS embeds the [wasmi](https://github.com/wasmi-labs/wasmi) WASM engine for running WASM applications. This achieves full sandboxing of user applications and memory separation from the kernel without the use of a virtual address space. A "system call" API is provided by the kernel so that apps can interact with the system. In particular, apps can query mouse/keyboard events, open/use TCP sockets, and send output framebuffers which are then read by the OS and composited onto the desktop. This lets apps use any drawing library they want (at the cost of a framebuffer copy).
+
+Because of its custom "system call" API, Munal OS does not aim for compatibility with the WASI standards. However, the [WASI Preview 1](https://github.com/WebAssembly/WASI/blob/main/legacy/README.md) standard is partially supported, mostly so that applications can be compiled without using `#![no_std]` (which is often a blocker for pulling in external dependencies). Only the bare minimum is implemented, and WASI functions that have no analog in Munal OS (e.g `path_rename()`) are simply stubbed.
+
+Munal OS relies on cooperative scheduling, meaning that applications are given control of the CPU every iteration of the global event loop, and must explicitly relinquish it. This is less an intentional design decision and more a consequence of using Wasmi as the WASM engine, which does not support interrupting and resuming functions mid-excution. However Wasmi does support fuel limiting, and so it would be possible to terminate misbehaving apps that hold the CPU for too long (though that's not implemented yet).
+
 ### UI Library
 
+Munal OS has its own UI toolkit (plainly named Uitk) which is used throughout the system. It is also used by WASM applications, thought that's just for convenience and consistency with the desktop styling; it is just a shared library and applications could in theory for any other library they wish, as long as it can render to a generic framebuffer.
+
+Uitk is an immediate mode toolkit which supports some basic widgets: buttons, progress bars, text editing, scrollable canvas...a generic triangle rasterizer is also provided (which is used to draw the radial pie menu and the 3D cube demo),
+
+A basic caching system is implemented to avoid unnecessary redraws: for example, generic scrollable canvases (like the web browser) are split into "tiles" associated to a unique contend ID. Tiles are only redrawn if the content ID changes, and pulled from a cache otherwise.
+
 ## Demo videos
+<TODO>
+[Screencast_20250215_121948.webm](https://github.com/user-attachments/assets/8cbf8a42-c012-4610-8668-014093efc09d)
 
 ## Credits & acknowledgements
 
-## Demo running in QEMU:
+* [Philipp Oppermann's great Rust OS tutorial](https://os.phil-opp.com/), which was the starting point of this whole project
+* [The OSDev Wiki](https://wiki.osdev.org/) for resources on x86_64 and PCI drivers
+* [The Wasmi WASM engine](https://github.com/wasmi-labs/wasmi), a great alternative to Wasmtime for embedded
+* [smoltcp](https://github.com/smoltcp-rs/smoltcp) for the TCP stack
+* [Rustls](https://github.com/rustls/rustls) for the TLS primitives
 
-[Screencast_20250215_121948.webm](https://github.com/user-attachments/assets/8cbf8a42-c012-4610-8668-014093efc09d)
-
-Font credits:
+Fonts used:
+* https://fonts.google.com/noto/specimen/Noto+Sans
 * https://fontesk.com/xanmono-font/
 * https://fontesk.com/libertinus-typeface/
 * https://fontesk.com/major-mono-font/
+
+Icons used:
+<TODO>
