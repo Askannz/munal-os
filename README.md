@@ -55,13 +55,13 @@ Munal OS relies on cooperative scheduling, meaning that applications are given c
 
 ### UI Library
 
-Munal OS has its own UI toolkit (plainly named Uitk) which is used throughout the system. It is also used by WASM applications, though that's just for convenience and consistency with the desktop styling; it is just a shared library and applications could in theory swap for any other library they wish, as long as it can render to a generic framebuffer.
+Munal OS has its own UI toolkit (plainly named Uitk) which is used throughout the desktop UI. It is also used by WASM applications, though that's just for convenience and consistency with the desktop styling; it is just a shared library and applications could in theory swap for any other library they wish, as long as it can render to a generic framebuffer.
 
 Uitk is an immediate mode toolkit which supports some basic widgets: buttons, progress bars, text editing, scrollable canvas...a generic triangle rasterizer is also provided (which is used to draw the radial pie menu and the 3D cube demo),
 
 Styling is supported via a global stylesheet which can be shared between OS and apps, and can be overriden for individual UI elements.
 
-A basic caching system is implemented to avoid unnecessary redraws: for example, generic scrollable canvases (like the web browser) are split into "tiles" tracked with a unique content ID. A system based on Rust's mutability automatically keeps track of changes to the content, and so tiles are only redrawn if the content ID changes, and pulled from a cache otherwise.
+A basic caching system is implemented to avoid unnecessary redraws: for example, generic scrollable canvases (like the web browser) are split into "tiles" tracked with a unique content ID. A system based on Rust's mutability rules automatically keeps track of changes to the content, and so tiles are only redrawn if the content ID changes, and pulled from a cache otherwise.
 
 ## Screenshots & videos
 
