@@ -6,7 +6,7 @@ Features:
 * Fully graphical interface in HD resolution with mouse and keyboard support
 * Sandboxed applications
 * Network driver and TCP stack
-* Customizable UI toolkit supporting various widgets, responsive layouts and flexible text rendering
+* Customizable UI toolkit providing various widgets, responsive layouts and flexible text rendering
 * Embedded selection of applications including:
   * A (very) basic web browser
   * A text editor
@@ -14,7 +14,7 @@ Features:
 
 ## Architecture
 
-Munal OS started as a toy project to practice systems programming, and over the years morphed into a full-blown OS and a playground to explore new ideas. It aims to re-examine principles of OS design, and see how much is really needed today to make a functional OS, and where shortcuts can be taken using modern tools. The design has no pretention to be superior to anything else, rather it is an experiment focusing on the simplicity of the codebase (even if it admittedly relies on heavy dependencies like a WASM engine).
+Munal OS started as a toy project to practice systems programming, and over the years morphed into a full-blown OS and a playground to explore new ideas. It aims to re-examine principles of OS design, and see how much is really needed today to make a functional OS, and where shortcuts can be taken using modern tools. The design has no pretention to be superior to anything else, rather it is an experiment striving simplicity of the codebase (but not necessarily a lightweight binary or minimal dependencies).
 
 In particular, here are usual cornerstones of OS design that Munal OS does **NOT** implement:
 
@@ -58,6 +58,8 @@ Munal OS relies on cooperative scheduling, meaning that applications are given c
 Munal OS has its own UI toolkit (plainly named Uitk) which is used throughout the system. It is also used by WASM applications, thought that's just for convenience and consistency with the desktop styling; it is just a shared library and applications could in theory for any other library they wish, as long as it can render to a generic framebuffer.
 
 Uitk is an immediate mode toolkit which supports some basic widgets: buttons, progress bars, text editing, scrollable canvas...a generic triangle rasterizer is also provided (which is used to draw the radial pie menu and the 3D cube demo),
+
+Styling is supported via a global stylesheet which can be shared between OS and apps, and overriden for individual UI element.
 
 A basic caching system is implemented to avoid unnecessary redraws: for example, generic scrollable canvases (like the web browser) are split into "tiles" associated to a unique contend ID. Tiles are only redrawn if the content ID changes, and pulled from a cache otherwise.
 
