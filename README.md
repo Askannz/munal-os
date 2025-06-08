@@ -76,7 +76,7 @@ A basic caching system is implemented to avoid unnecessary redraws: for example,
 * [The Wasmi WASM engine](https://github.com/wasmi-labs/wasmi), a great alternative to Wasmtime for embedded
 * [smoltcp](https://github.com/smoltcp-rs/smoltcp) for the TCP stack
 * [Rustls](https://github.com/rustls/rustls) for the TLS primitives
-* [RustPython](https://github.com/RustPython/RustPython) for the embeddable Python implementations
+* [RustPython](https://github.com/RustPython/RustPython) for the embeddable Python implementation
 
 Fonts used:
 * https://fonts.google.com/noto/specimen/Noto+Sans
