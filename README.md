@@ -12,6 +12,12 @@ Features:
   * A text editor
   * A Python terminal
 
+## Screenshots & videos
+
+**TODO**
+
+[Screencast_20250215_121948.webm](https://github.com/user-attachments/assets/8cbf8a42-c012-4610-8668-014093efc09d)
+
 ## Architecture
 
 Munal OS started as a toy project to practice systems programming, and over the years morphed into a full-blown OS and a playground to explore new ideas. It aims to re-examine principles of OS design, and see how much is really needed today to make a functional OS, and where shortcuts can be taken using modern tools. The design has no pretention to be superior to anything else, rather it is an experiment in striving for simplicity of the codebase (but not necessarily a lightweight binary or minimal dependencies).
@@ -63,11 +69,9 @@ Styling is supported via a global stylesheet which can be shared between OS and 
 
 A basic caching system is implemented to avoid unnecessary redraws: for example, generic scrollable canvases (like the web browser) are split into "tiles" tracked with a unique content ID. A system based on Rust's mutability rules automatically keeps track of changes to the content, and so tiles are only redrawn if the content ID changes, and pulled from a cache otherwise.
 
-## Screenshots & videos
+## Building and running
 
 **TODO**
-
-[Screencast_20250215_121948.webm](https://github.com/user-attachments/assets/8cbf8a42-c012-4610-8668-014093efc09d)
 
 ## Credits & acknowledgements
 
