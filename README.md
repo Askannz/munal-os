@@ -71,7 +71,20 @@ A basic caching system is implemented to avoid unnecessary redraws: for example,
 
 ## Building and running
 
-**TODO**
+This project compiles as of Rust Nightly 2025-06-01 and runs as of QEMU 10.0.0.
+
+First add the required rustup components:
+```
+rustup target add --toolchain nightly-2025-06-01-x86_64-unknown-linux-gnu wasm32-wasip1
+rustup component add rust-src --toolchain nightly-2025-06-01-x86_64-unknown-linux-gnu
+```
+Then execute this script to build and run:
+```
+./run.sh
+```
+The [run.sh](/run.sh) script is very straightforward, it simply builds the WASM apps one by one, then builds the kernel, then runs QEMU.
+
+The script assumes that the QEMU command is named `qemu-system-x86_64`, so if that's not the case on your system just replace it with the proper name.
 
 ## Credits & acknowledgements
 
