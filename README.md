@@ -1,6 +1,6 @@
 # Munal OS ∴
 
-An experimental operating system written in Rust, with cooperative scheduling and a security model based on WASM sandboxing.
+An experimental operating system fully written in Rust, with a unikernel design, cooperative scheduling and a security model based on WASM sandboxing.
 
 Features:
 * Fully graphical interface in HD resolution with mouse and keyboard support
@@ -53,7 +53,9 @@ The downside of course is that each step of the loop is not allowed to hold the 
 
 ### Applications
 
-Munal OS embeds the [wasmi](https://github.com/wasmi-labs/wasmi) WASM engine for running WASM applications. This achieves full sandboxing of user applications and memory separation from the kernel without the use of a virtual address space (or, well, moving the virtual address space to a VM, rather). A "system call" API is provided by the kernel so that apps can interact with the system. In particular, apps can query mouse/keyboard events, open/use TCP sockets, and send output framebuffers which are then read by the OS and composited onto the desktop. This lets apps use any drawing library they want (at the cost of a framebuffer copy).
+Munal OS embeds the [wasmi](https://github.com/wasmi-labs/wasmi) WASM engine for running WASM applications. This achieves full sandboxing of user applications and memory separation from the kernel without the use of a virtual address space (or, moving the virtual address space to a VM, rather). A "system call" API is provided by the kernel so that apps can interact with the system. In particular, apps can query mouse/keyboard events, open/use TCP sockets, and send output framebuffers which are then read by the OS and composited onto the desktop. This lets apps use any drawing library they want (at the cost of a framebuffer copy).
+
+All showcased applications are written in Rust, but there would be nothing preventing apps to be made in other languages, as long as it can compile to WASM.
 
 Because of its custom "system call" API, Munal OS does not aim for compatibility with the WASI standards. However, the [WASI Preview1](https://github.com/WebAssembly/WASI/blob/main/legacy/README.md) standard is partially supported, mostly so that applications can be compiled without using `#![no_std]` (which is often a blocker for pulling in external dependencies). Only the bare minimum is implemented, and WASI functions that have no analog in Munal OS (e.g `path_rename()`) are simply stubbed.
 
